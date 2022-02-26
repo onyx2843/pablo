@@ -235,7 +235,7 @@ struct kbasep_pm_tick_timer_state {
 	struct hrtimer timer;
 
 	ktime_t configured_interval;
-    unsigned int default_ticks;
+	unsigned int default_ticks;
 	unsigned int configured_ticks;
 	unsigned int remaining_ticks;
 
@@ -471,27 +471,27 @@ enum kbase_pm_policy_id {
  * enum kbase_pm_policy_event - PM Policy event ID
  */
 enum kbase_pm_policy_event {
-    /**
-     * @KBASE_PM_POLICY_EVENT_IDLE: Indicates that the GPU power state
-     * model has determined that the GPU has gone idle.
-     */
-    KBASE_PM_POLICY_EVENT_IDLE,
-    /**
-     * @KBASE_PM_POLICY_EVENT_POWER_ON: Indicates that the GPU state model
-     * is preparing to power on the GPU.
-     */
-    KBASE_PM_POLICY_EVENT_POWER_ON,
-    /**
-     * @KBASE_PM_POLICY_EVENT_TIMER_HIT: Indicates that the GPU became
-     * active while the Shader Tick Timer was holding the GPU in a powered
-     * on state.
-     */
-    KBASE_PM_POLICY_EVENT_TIMER_HIT,
-    /**
-     * @KBASE_PM_POLICY_EVENT_TIMER_MISS: Indicates that the GPU did not
-     * become active before the Shader Tick Timer timeout occurred.
-     */
-    KBASE_PM_POLICY_EVENT_TIMER_MISS,
+	/**
+	 * @KBASE_PM_POLICY_EVENT_IDLE: Indicates that the GPU power state
+	 * model has determined that the GPU has gone idle.
+	 */
+	KBASE_PM_POLICY_EVENT_IDLE,
+	/**
+	 * @KBASE_PM_POLICY_EVENT_POWER_ON: Indicates that the GPU state model
+	 * is preparing to power on the GPU.
+	 */
+	KBASE_PM_POLICY_EVENT_POWER_ON,
+	/**
+	 * @KBASE_PM_POLICY_EVENT_TIMER_HIT: Indicates that the GPU became
+	 * active while the Shader Tick Timer was holding the GPU in a powered
+	 * on state.
+	 */
+	KBASE_PM_POLICY_EVENT_TIMER_HIT,
+	/**
+	 * @KBASE_PM_POLICY_EVENT_TIMER_MISS: Indicates that the GPU did not
+	 * become active before the Shader Tick Timer timeout occurred.
+	 */
+	KBASE_PM_POLICY_EVENT_TIMER_MISS,
 };
 
 /**
@@ -565,15 +565,15 @@ struct kbase_pm_policy {
 	 */
 	bool (*get_core_active)(struct kbase_device *kbdev);
 
-    /**
-     * Function called when a power event occurs
-     *
-     * @kbdev: The kbase device structure for the device (must be a
-     *         valid pointer)
-     * @event: The id of the power event that has occurred
-     */
-    void (*handle_event)(struct kbase_device *kbdev,
-        enum kbase_pm_policy_event event);
+	/**
+	 * Function called when a power event occurs
+	 *
+	 * @kbdev: The kbase device structure for the device (must be a
+	 *         valid pointer)
+	 * @event: The id of the power event that has occurred
+	 */
+	void (*handle_event)(struct kbase_device *kbdev,
+		enum kbase_pm_policy_event event);
 
 	enum kbase_pm_policy_id id;
 };
