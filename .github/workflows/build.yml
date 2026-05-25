@@ -11,6 +11,8 @@ jobs:
       fail-fast: true
       matrix:
         type:
+          - aosp-11-e
+          - aosp-11-p        
           - aosp-12-e
           - aosp-12-p
 
